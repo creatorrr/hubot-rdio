@@ -1,8 +1,8 @@
 {
   "name": "hubot-rdio",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Rdio controller for hubot.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "prepublish": "cake build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +23,5 @@
   "author": "creatorrr",
   "license": "BSD",
   "readmeFilename": "README.md",
-  "gitHead": "70b43490fc98d98fbd88bedde71014282bde995a",
   "devDependencies": {}
 }

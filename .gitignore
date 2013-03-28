@@ -1,5 +1,6 @@
 # Custom rules
 *.js
+lib
 
 # Standard node .gitignore
 # (https://raw.github.com/github/gitignore/master/Node.gitignore)
