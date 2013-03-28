@@ -1,0 +1,24 @@
+{
+  "name": "hubot-rdio",
+  "version": "0.1.0",
+  "description": "Rdio controller for hubot.",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "cake build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/creatorrr/hubot-rdio"
+  },
+  "dependencies": {
+    "hubot.io": "0.1.x"
+  },
+  "keywords": [
+    "hubot",
+    "rdio",
+    "socket.io"
+  ],
+  "author": "creatorrr",
+  "license": "BSD"
+}
