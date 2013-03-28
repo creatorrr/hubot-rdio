@@ -12,8 +12,9 @@
     "url": "https://github.com/creatorrr/hubot-rdio"
   },
   "dependencies": {
+    "coffeecup": "0.3.x",
     "node-rdio": "0.1.x",
-    "hubot.io": "0.1.x"
+    "hubot.io":  "0.1.x"
   },
   "keywords": [
     "hubot",
