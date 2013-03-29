@@ -24,5 +24,6 @@
   "author": "creatorrr",
   "license": "BSD",
   "readmeFilename": "README.md",
-  "devDependencies": {}
+  "devDependencies": {},
+  "gitHead": "091feb4de1321049eafe7915d692d5b9022938c8"
 }
