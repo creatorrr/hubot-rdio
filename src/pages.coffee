@@ -7,8 +7,7 @@ helpers =
       head ->
         script src: '/socket.io/socket.io.js'
         script src: '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
-
-        script src: '/jquery.rdio.js'
+        script src: '//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'
 
       body ->
         partial()
@@ -42,14 +41,23 @@ pages =
 
   player: ->
     layout =>
-      div '#rdio', -> @playbackToken
+      h1 'Rdio Playback API simple example'
+      div '#apiswf'
 
-      input {type: 'hidden', id: 'playbackToken', value: @playbackToken}
+      input '#play_key', value: 'a997982'
+      button '#play', -> 'Play'
+      button '#stop', -> 'stop'
+      button '#pause', -> 'pause'
+      button '#previous', -> 'previous'
+      button '#next', -> 'next'
+
+
+      input type: 'hidden', id: 'playback_token', value: @playbackToken
       coffeescript ->
-        playbackToken = $('#playbackToken').val()
-        $('#rdio').rdio playbackToken
+        window.playback_token = $('#playback_token').val()
+        window.domain = window.location.hostname
 
-        $('#rdio').on 'rdio.ready', (e, user) -> console.log user
+      script src: 'https://raw.github.com/rdio/hello-web-playback/master/hello.js'
 
 # Precompile pages and export.
 module.exports[name] = compile page, hardcode: helpers for name, page of pages

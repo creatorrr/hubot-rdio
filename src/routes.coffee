@@ -97,4 +97,4 @@ module.exports = routes = (robot) ->
 
           else
             res.end pages.player
-              playbackToken: data
+              playbackToken: data.result
