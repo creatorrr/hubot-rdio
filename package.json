@@ -1,6 +1,6 @@
 {
   "name": "hubot-rdio",
-  "version": "0.0.6-test",
+  "version": "0.0.6",
   "description": "Rdio controller for hubot.",
   "main": "lib/index.js",
   "scripts": {

@@ -61,7 +61,6 @@ pages =
 
       coffeescript ->
         socket = io.connect()
-        socket.on 'lady gaga', (data) -> alert data
         socket.on 'pause', -> $('#pause').click()
         socket.on 'play', (track) ->
           console.log track

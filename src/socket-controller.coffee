@@ -2,7 +2,6 @@ module.exports = (robot) ->
   new ->
     @sockets = []
     robot.on 'sockets:connection', (socket) =>
-      socket.emit 'lady gaga', data: 'lol'
       socket.on 'event', (args...) ->
         robot.emit 'player:receive', args...
 

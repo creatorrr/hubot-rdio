@@ -60,7 +60,7 @@ module.exports = routes = (robot) ->
 
       res.end pages.redirect
         message: "Yay! Your access token is #{ accessToken }"
-        redirect: '/'
+        redirect: '/player'
 
   player: (req, res) ->
     res.writeHead 200,

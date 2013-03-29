@@ -21,7 +21,7 @@ module.exports = (robot) ->
   robot.respond /init rdio/i, listeners.init
   # robot.respond /test rdio/i, listeners.test
 
-  # robot.respond /play (song|artist|album) (["'\w: \-_]+).*$/i, listeners.play
+  robot.respond /play (track|artist|album) (["'\w: \-_]+).*$/i, listeners.play
   robot.respond /play whatever/i, listeners.playWhatever
   robot.respond /pause( music){0,1}/i, listeners.pause
 
