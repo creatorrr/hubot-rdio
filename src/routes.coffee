@@ -65,7 +65,7 @@ module.exports = routes = (robot) ->
     res.writeHead 200,
       'Content-Type': 'text/html'
 
-    accessToken  = robot.brain.get 'RdioAccessSecret'
+    accessToken  = robot.brain.get 'RdioAccessToken'
     accessSecret = robot.brain.get "RdioAccessSecret-#{accessToken}"
 
     unless accessToken and accessSecret
