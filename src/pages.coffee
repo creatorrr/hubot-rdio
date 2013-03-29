@@ -59,5 +59,14 @@ pages =
 
       script src: 'https://raw.github.com/rdio/hello-web-playback/master/hello.js'
 
+      coffeescript ->
+        socket = io.connect()
+        socket.on 'lady gaga', (data) -> alert data
+        socket.on 'pause', -> $('#pause').click()
+        socket.on 'play', (track) ->
+          console.log track
+          $('#play_key').val track.key
+          $('#play').click()
+
 # Precompile pages and export.
 module.exports[name] = compile page, hardcode: helpers for name, page of pages
