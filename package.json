@@ -1,6 +1,6 @@
 {
   "name": "hubot-rdio",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Rdio controller for hubot.",
   "main": "lib/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "dependencies": {
     "coffeecup": "0.3.x",
     "node-rdio": "0.1.x",
-    "hubot.io":  "0.1.x"
+    "hubot.io": "0.1.x"
   },
   "keywords": [
     "hubot",
@@ -25,5 +25,5 @@
   "license": "BSD",
   "readmeFilename": "README.md",
   "devDependencies": {},
-  "gitHead": "4af15252c96b273f1a221c6210386b581df34d45"
+  "gitHead": "391ff609194c01b1c432d30f5893b6b2c18865df"
 }
