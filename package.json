@@ -1,6 +1,6 @@
 {
   "name": "hubot-rdio",
-  "version": "0.0.5m",
+  "version": "0.0.6-test",
   "description": "Rdio controller for hubot.",
   "main": "lib/index.js",
   "scripts": {
@@ -25,5 +25,5 @@
   "license": "BSD",
   "readmeFilename": "README.md",
   "devDependencies": {},
-  "gitHead": "3c43e0dae86e823c15ea4d12dbb6c25317c0d6da"
+  "gitHead": "6864ea08fe2c779a9736e41593ddef09f61e201b"
 }
