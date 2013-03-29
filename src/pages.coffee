@@ -29,5 +29,8 @@ pages =
 
       setTimeout redirect, 3000
 
+  player: ->
+    div -> @playbackToken
+
 # Precompile pages and export.
 module.exports[name] = compile page for name, page of pages

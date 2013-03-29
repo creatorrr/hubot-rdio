@@ -2,7 +2,7 @@
 Rdio = require 'node-rdio'
 
 # Load globals
-{RDIO_CONSUMER, RDIO_SECRET, HEROKU_URL, CALLBACK} = require './globals'
+{RDIO_CONSUMER, RDIO_SECRET, DOMAIN, CALLBACK} = require './globals'
 
 module.exports = listeners = (robot) ->
   init: (msg) ->
@@ -11,7 +11,7 @@ module.exports = listeners = (robot) ->
       RDIO_SECRET
     ]
 
-    rdio.beginAuthentication HEROKU_URL+CALLBACK, (error, authUrl) ->
+    rdio.beginAuthentication DOMAIN+CALLBACK, (error, authUrl) ->
       if error
         robot.logger.debug error
         return msg.send "Error: #{ error }"

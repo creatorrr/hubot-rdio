@@ -13,7 +13,9 @@ extend = (dest, sources...) ->
 
 # Get config
 rdio = pick process.env, 'RDIO_CONSUMER', 'RDIO_SECRET', 'HEROKU_URL'
-misc = CALLBACK: 'auth'
+misc =
+  DOMAIN: process.env.DOMAIN or process.env.HEROKU_URL
+  CALLBACK: 'auth'
 
 # Globals
 module.exports = globals = extend {}, rdio, misc

@@ -1,8 +1,11 @@
 # External libraries
 Rdio = require 'node-rdio'
 
+# Modules
+pages = require './pages'
+
 # Load globals
-{RDIO_CONSUMER, RDIO_SECRET} = require './globals'
+{RDIO_CONSUMER, RDIO_SECRET, DOMAIN} = require './globals'
 
 module.exports = routes = (robot) ->
   home: (req, res) ->
@@ -54,6 +57,42 @@ module.exports = routes = (robot) ->
         .set("RdioAccessSecret-#{accessToken}", accessSecret)
         .save()
 
+      res.end pages.redirect
+        message: "Yay! Your access token is #{ accessToken }"
+        redirect: '/'
+
+  player: (req, res) ->
+    res.writeHead 200,
+      'Content-Type': 'text/html'
+
+    accessToken  = robot.brain.get 'RdioAccessSecret'
+    accessSecret = robot.brain.get "RdioAccessSecret-#{accessToken}"
+
+    unless accessToken and accessSecret
+      return res.end pages.redirect
+        message: 'Please authorize rdio first.'
+        redirect: '/'
+
+    rdio = new Rdio [
+      RDIO_CONSUMER
+      RDIO_SECRET
+    ], [
+      accessToken
+      accessSecret
+    ]
+
+    rdio.call 'currentUser', (error) ->
+      if error
         res.end pages.redirect
-          message: "Yay! Your access token is #{ accessToken }"
+          message: 'Please authorize rdio first.'
           redirect: '/'
+
+      else
+        rdio.call 'getPlaybackToken', {domain: DOMAIN}, (error, data) ->
+          if error
+            res.end pages.error
+              message: "Error: #{ error }"
+
+          else
+            res.end pages.player
+              playbackToken: data

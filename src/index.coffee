@@ -13,7 +13,6 @@ module.exports = (robot) ->
   robot.io = sockets robot
 
   # Load modules
-  pages     = require './pages'
   routes    = (require './routes') robot
   listeners = (require './listeners') robot
 
@@ -21,15 +20,13 @@ module.exports = (robot) ->
   robot.respond /init rdio/i, listeners.init
   robot.respond /test rdio/i, listeners.test
 
+  # robot.respond /play (song|artist|album) (["'\w: \-_]+).*$/i, listeners.play
+  # robot.respond /play whatever/i, listeners.playWhatever
+  # robot.respond /pause( music){0,1}/i, listeners.pause
+
   robot.router.get '/', routes.home
   robot.router.get "/#{ CALLBACK }", routes.auth
-
-  #   client.post "#{ RDIO_API_ENDPOINT }",
-  #     accessToken,
-  #     accessSecret,
-  #     'method=getOfflineTracks',
-  #     'application/x-www-form-urlencoded',
-  #     (error, data) -> msg.send error, data
+  robot.router.get '/player', routes.player
 
 # rdio init
 #   get accesstoken and store init
