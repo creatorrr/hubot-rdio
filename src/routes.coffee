@@ -1,4 +1,5 @@
 # External libraries
+{parse} = require 'url'
 Rdio = require 'node-rdio'
 
 # Modules
@@ -88,7 +89,8 @@ module.exports = routes = (robot) ->
           redirect: '/'
 
       else
-        rdio.call 'getPlaybackToken', {domain: DOMAIN}, (error, data) ->
+        {hostname} = parse DOMAIN
+        rdio.call 'getPlaybackToken', { domain: hostname }, (error, data) ->
           if error
             res.end pages.error
               message: "Error: #{ error }"
