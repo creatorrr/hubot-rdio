@@ -1,7 +1,7 @@
 {compile} = require 'coffeecup'
 
-module.exports = pages =
-  home: compile ->
+pages =
+  home: ->
     doctype 5
     html ->
       body ->
@@ -16,6 +16,18 @@ module.exports = pages =
             socket = io.connect()
             socket.on 'gaga', (data) -> console.log data
 
-  error: compile ->
+  error: ->
     body ->
       p @message
+
+  redirect: ->
+    input {type: 'hidden', id: 'redirect', value: @redirect}
+    coffeescript ->
+      redirect = ->
+        url = (document.getElementById 'redirect').value
+        window.location.href = url
+
+      setTimeout redirect, 3000
+
+# Precompile pages and export.
+module.exports[name] = compile page for name, page of pages
