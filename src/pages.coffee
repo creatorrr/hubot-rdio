@@ -21,6 +21,8 @@ pages =
       p @message
 
   redirect: ->
+    h3 @message
+
     input {type: 'hidden', id: 'redirect', value: @redirect}
     coffeescript ->
       redirect = ->

@@ -10,11 +10,12 @@ sockets = require 'hubot.io'
 
 module.exports = (robot) ->
   # Initialize socket.io
-  robot.io = sockets robot
+  io = sockets robot
 
   # Load modules
-  routes    = (require './routes') robot
-  listeners = (require './listeners') robot
+  routes           = (require './routes') robot
+  listeners        = (require './listeners') robot
+  socketController = (require './socket-controller') robot
 
   # Initialize this thing.
   robot.respond /init rdio/i, listeners.init
