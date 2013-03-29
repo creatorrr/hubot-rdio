@@ -42,7 +42,7 @@ pages =
   player: ->
     layout =>
       h1 'Rdio Playback API simple example'
-      div '#apiswf'
+      div '#apiswf', -> ''
 
       input '#play_key', value: 'a997982'
       button '#play', -> 'Play'
