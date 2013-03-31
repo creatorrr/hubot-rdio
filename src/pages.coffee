@@ -1,18 +1,6 @@
 {compile} = require 'coffeecup'
 
-helpers =
-  layout: (partial) ->
-    doctype 5
-    html ->
-      head ->
-        script src: '/socket.io/socket.io.js'
-        script src: '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
-        script src: '//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'
-
-      body ->
-        partial()
-
-pages =
+templates =
   home: ->
     layout =>
       h1 @title
@@ -67,5 +55,19 @@ pages =
           $('#play_key').val track.key
           $('#play').click()
 
-# Precompile pages and export.
-module.exports[name] = compile page, hardcode: helpers for name, page of pages
+# Helpers
+helpers =
+  layout: (partial) ->
+    doctype 5
+    html ->
+      head ->
+        script src: '/socket.io/socket.io.js'
+        script src: '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
+        script src: '//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'
+
+      body ->
+        partial()
+
+# Precompile templates and export.
+for name, template of templates
+  module.exports[name] = compile template, hardcode: helpers

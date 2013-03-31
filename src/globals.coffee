@@ -17,8 +17,9 @@ misc =
   DOMAIN: process.env.DOMAIN or process.env.HEROKU_URL
   CALLBACK: 'auth'
 
-# Globals
+# Export globals
 module.exports = globals = extend {}, rdio, misc
 
+# Check for valid Rdio credentials.
 unless globals.RDIO_CONSUMER and globals.RDIO_SECRET
   throw new Error 'Invalid rdio credentials'

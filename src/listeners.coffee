@@ -6,15 +6,20 @@ Rdio = require 'node-rdio'
 {RDIO_CONSUMER, RDIO_SECRET, DOMAIN, CALLBACK} = require './globals'
 
 # Helpers
+# Returns true if obj is a string.
 isString = (obj) ->
   Object::toString.call(obj) is '[object String]'
 
+# Returns a random integer between min and max.
 random = (min, max) -> min + Math.floor Math.random()*(max - min + 1)
 
-getRandom = (arr) -> arr[random 0, arr.length]
+# Get random element from arr.
+getRandom = (arr) -> arr[random 0, arr.length-1]
 
+# Return capitalized string.
 capitalize = (str) -> (str.charAt 0).toUpperCase() + str[1..]
 
+# Capture robot instance in a closure and return interface.
 module.exports = listeners = (robot) ->
   getRdio = ->
     accessToken = robot.brain.get 'RdioAccessToken'
@@ -81,17 +86,17 @@ module.exports = listeners = (robot) ->
         msg.send "Playing track #{ track.name }"
 
     play: (msg) ->
-      mode = capitalize msg.match[0].toLowerCase()
-      query = msg.match[1]
+      mode = capitalize msg.match[1].toLowerCase()
+      query = msg.match[2]
 
       rdio = getRdio()
-      rdio.call 'search', {type: mode, query: query}, (error, data) ->
+      rdio.call 'search', { types: mode, query: query }, (error, {result}) ->
         if error
           robot.logger.debug "Error: #{ error }"
           return msg.send "Error: #{ error }"
 
-        msg.send inspect data
+        track = result.results[0]
+        robot.emit 'player:send', 'play', track
 
-        # track = getRandom result
-        # robot.emit 'player:send', 'play', track
+        msg.send "Playing track #{ track.name }"
   }

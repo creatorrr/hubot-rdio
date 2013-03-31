@@ -6,7 +6,7 @@ Rdio = require 'node-rdio'
 pages = require './pages'
 
 # Load globals
-{RDIO_CONSUMER, RDIO_SECRET, DOMAIN} = require './globals'
+{RDIO_CONSUMER, RDIO_SECRET, DOMAIN, CALLBACK} = require './globals'
 
 module.exports = routes = (robot) ->
   home: (req, res) ->
@@ -15,6 +15,27 @@ module.exports = routes = (robot) ->
 
     res.end pages.home
       title: 'Pataku?'
+
+  login: (req, res) ->
+    rdio = new Rdio [
+      RDIO_CONSUMER
+      RDIO_SECRET
+    ]
+
+    rdio.beginAuthentication DOMAIN+CALLBACK, (error, authUrl) ->
+      if error
+        robot.logger.debug error
+        return msg.send "Error: #{ error }"
+
+      requestToken  = rdio.token[0]
+      requestSecret = rdio.token[1]
+
+      robot.brain
+        .set('RdioRequestToken', requestToken)
+        .set("RdioRequestSecret-#{requestToken}", requestSecret)
+        .save()
+
+      res.redirect authUrl
 
   auth: (req, res) ->
     res.writeHead 200,

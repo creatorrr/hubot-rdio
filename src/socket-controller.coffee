@@ -1,3 +1,11 @@
+# Helpers
+# Extend dest object with sources.
+extend = (dest, sources...) ->
+  for src in sources
+    dest[key] = value for own key, value of src
+
+  dest
+
 module.exports = (robot) ->
   new ->
     @sockets = []
@@ -12,10 +20,3 @@ module.exports = (robot) ->
 
     # Return instance
     this
-
-# Helpers
-extend = (dest, sources...) ->
-  for src in sources
-    dest[key] = value for own key, value of src
-
-  dest
