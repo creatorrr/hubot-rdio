@@ -1,18 +1,14 @@
-fs = require 'fs'
+require 'flour'
 
-{print} = require 'sys'
-{spawn} = require 'child_process'
+{readdirSync} = require 'fs'
 
-build = (callback, opts...) ->
-  options = ['-c', '-o', 'lib', 'src']
-  options.unshift opts... if opts
-  coffee = spawn 'coffee', options
-  coffee.stderr.on 'data', (data) ->
-    process.stderr.write data.toString()
-  coffee.stdout.on 'data', (data) ->
-    print data.toString()
-  coffee.on 'exit', (code) ->
-    callback?() if code is 0
+task 'build', 'Compile .coffee files in src/ to lib/', ->
+  isCoffee = (file) -> /\.(coffee|litcoffee|coffee\.md)$/.test file
 
-task 'build', 'Build .coffee files.', build
-task 'watch', 'Watch and build .coffee files.', -> build null, '-w'
+  for file in files = readdirSync 'src' when isCoffee file
+    compile "src/#{ file }", "lib/#{ compiled = file.replace /(coffee)$/, 'js' }"
+
+task 'compile', 'Alias: build', -> invoke 'build'
+
+task 'watch', 'Watch and compile .coffee files.', ->
+  watch 'src/*.*', -> invoke 'build'
