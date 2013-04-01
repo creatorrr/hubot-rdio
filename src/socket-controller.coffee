@@ -7,8 +7,12 @@ extend = (dest, sources...) ->
   dest
 
 module.exports = (robot) ->
+  # Return singleton interface.
   new ->
+    # Internal store for socket connections.
     @sockets = []
+
+    # Event emitter API for interfacing with other scripts.
     robot.on 'sockets:connection', (socket) =>
       socket.on 'event', (args...) ->
         robot.emit 'player:receive', args...
@@ -18,5 +22,4 @@ module.exports = (robot) ->
     robot.on 'player:send', (args...) =>
       socket.emit args... for socket in @sockets
 
-    # Return instance
     this

@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "coffeecup": "0.3.x",
-    "node-rdio": "0.1.x",
-    "hubot.io": "0.1.x"
+    "node-rdio": ">= 0.1.1",
+    "hubot.io": ">= 0.1.3"
   },
   "keywords": [
     "hubot",
@@ -24,6 +24,5 @@
   "author": "creatorrr",
   "license": "BSD",
   "readmeFilename": "README.md",
-  "devDependencies": {},
-  "gitHead": "773de77dc4ef7351b2078e2ddd38fe77c648739c"
+  "devDependencies": {}
 }

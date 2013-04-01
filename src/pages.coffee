@@ -1,3 +1,4 @@
+# External libraries
 {compile} = require 'coffeecup'
 
 templates =
