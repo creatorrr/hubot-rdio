@@ -9,9 +9,10 @@ This is an external [hubot-script](https://github.com/github/hubot/blob/master/R
 2. Tell hubot to load it. Add `"hubot-rdio"` to the `external-scripts.json` list in the hubot root folder.
 3. `npm install` while you grab a beer.
 4. Set the following environment variables and start hubot using `bin/hubot` :
-      NODE_ENV:      'production'
-      RDIO_CONSUMER: '<your rdio consumer key>'
-      RDIO_SECRET:   '<your rdio consumer secret>'
+ * `NODE_ENV:      'production'`
+ * `RDIO_CONSUMER: '<your rdio consumer key>'`
+ * `RDIO_SECRET:   '<your rdio consumer secret>'`
+
 
 You can get the rdio consumer key and secret by creating an app at rdio's [developer page](http://developer.rdio.com/apps/mykeys).
 
